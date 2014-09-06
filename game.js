@@ -2,7 +2,7 @@
  * Created by robomatix on 06/09/14.
  */
 
-var a = ["earth", "wind", "air", "fire"];
+var a = ["earth", "water", "air", "fire"];
 shuffle(a);
 
 i = 0;
