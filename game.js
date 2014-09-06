@@ -9,6 +9,12 @@ i = 0;
 for (tot = a.length; i < tot; i++)
     addEl(a[i]);
 
+/* To detected witch element is clicked, not the more more concise way, but it always work */
+elClkd("earth");
+elClkd("water");
+elClkd("air");
+elClkd("fire");
+
 
 /*http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array*/
 function shuffle(array) {
@@ -32,6 +38,8 @@ function shuffle(array) {
 
 }
 
+
+
 function addEl(e) {
     /* http://stackoverflow.com/questions/14004117/javascript-create-div-and-append-div-dynamically */
 
@@ -40,7 +48,7 @@ function addEl(e) {
     iDiv.id = e;
     iDiv.className = 'el';
 
-    // Create a paragraph so we can verticaly center it
+    // Create a paragraph so we can verticaly center it /* http://phrogz.net/css/vertical-align/ */
     var iP = document.createElement('p');
     iP.innerHTML = e;
 
@@ -48,3 +56,13 @@ function addEl(e) {
     document.getElementsByTagName('body')[0].appendChild(iDiv).appendChild(iP);
 
 }
+
+function elClkd(el){
+    document.getElementById(el).onclick = function() {
+        console.log(el);
+    }
+}
+
+
+/* Memo */
+/* http://stackoverflow.com/questions/17157342/pure-js-detect-if-im-clicking-an-element-within-an-element , doesn't always get the id of the div ... */
