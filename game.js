@@ -4,10 +4,20 @@
 
 
 /*
- * The initial array of elements
+ * Initiation
  ***********************************
  */
-var a = ["earth", "water", "air", "fire"];
+var a = ["earth", "water", "air", "fire"]; // The initial array of elements
+
+state = "menu";
+
+/*
+* Menu state
+**************************************
+ */
+mG();
+
+
 
 /*
  * Generating the arrays that will be used for the order in which the element should be clicked and the order they will be displayed
@@ -46,7 +56,7 @@ console.log(sA2);
  */
 i = 0;
 for (tot = a.length; i < tot; i++)
-    addEl(a[i]);
+    //addEl(a[i]);
 
 /*
  * The logic of the game ! LOL !
@@ -66,6 +76,40 @@ elClkd("fire");
  * FUNCTIONS
  ******************************************
  */
+
+/*
+ * Menu Generator !!!!
+ * Menu Generator !!!!
+ * Yeah ! Yeah !! Yeah !!!
+ * @returns Nothing but generate a menu !!!
+ */
+function mG() {
+
+    // Create a div
+    var iH1 = document.createElement('h1');
+    iH1.id = "h1";
+    iH1.innerHTML = "Click the four elements";
+
+    var iP = document.createElement('p');
+    iP.id = "pitch";
+    iP.innerHTML = "In this game, you have to remember in which order to click or tap the elements... Click or tap anywhere on the screen to start playing... Memorize the order of the elements and then click or tap anywhere on the screen and then click or tap the elements in the order you remember it... Thirteen seconds is the maximum duration of this game...";
+
+    // Appending the previous elements
+    document.getElementsByTagName('body')[0].appendChild(iH1);
+    var h1 = document.getElementById("h1");
+    insertAfter(iP, h1);
+}
+
+/*
+ * Add a node after an another one
+ * @param newNode : the node to add
+ * @param referenceNode : the node after which the new node will be added
+ * @returns Nothing
+ */
+function insertAfter(newNode, referenceNode) {
+    /* http://stackoverflow.com/questions/4793604/how-to-do-insert-after-in-javascript-without-using-a-library */
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
+}
 
 /*
  * Convert an object to an array

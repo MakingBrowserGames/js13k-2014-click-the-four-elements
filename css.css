@@ -8,6 +8,19 @@ html {
     height: 100%;
     min-height: 100%;
     font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: white;
+}
+
+h1,
+p#pitch {
+    max-width: 480px;
+    margin: 14px auto 0 auto;
+    text-align: justify;
+}
+
+h1 {
+    text-align: center;
 }
 
 .el {
@@ -24,7 +37,6 @@ html {
     margin-top: -1em;
     width: 100%;
     text-align: center;
-    color: white;
     font-weight: bold;
 }
 
