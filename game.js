@@ -4,14 +4,14 @@
 
 
 /*
-* The initial array of elements
-***********************************
+ * The initial array of elements
+ ***********************************
  */
 var a = ["earth", "water", "air", "fire"];
 
 /*
-* Generating the arrays that will be used for the order in which the element should be clicked and the order they will be displayed
-* *********************************************************************************************************************************
+ * Generating the arrays that will be used for the order in which the element should be clicked and the order they will be displayed
+ * *********************************************************************************************************************************
  */
 
 shuffle(a); // Randomize the array of elements
@@ -30,37 +30,27 @@ dG.el2 = a[1];
 dG.el3 = a[2];
 dG.el4 = a[3];
 
-/* https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/getOwnPropertyNames */
+
 sA1 = new Array();
-Object.getOwnPropertyNames(dB).forEach(function (val, idx, array) {
-
-    console.log(idx + " ->" + val + " -> " + dB[val]);
-    sA1[idx] = dB[val];
-
-});
+o2a(dB, sA1);
 
 sA2 = new Array();
-Object.getOwnPropertyNames(dG).forEach(function (val, idx, array) {
-
-    console.log(idx + " ->" + val + " -> " + dG[val]);
-    sA2[idx] = dG[val];
-
-});
+o2a(dG, sA2);
 
 console.log(sA1);
 console.log(sA2);
 
 /*
-* Generating the div in the document displayed in the browser
-***************************************************************
+ * Generating the div in the document displayed in the browser
+ ***************************************************************
  */
 i = 0;
 for (tot = a.length; i < tot; i++)
     addEl(a[i]);
 
 /*
-* The logic of the game ! LOL !
-***********************************************************************************************************
+ * The logic of the game ! LOL !
+ ***********************************************************************************************************
  */
 
 cC = 0; // cC stand for click counter, sort of index of the "clicks", useful to know if the clicked element is the one that should have been clicked. In the array of elements c should be index of the element in the array
@@ -72,7 +62,30 @@ elClkd("air");
 elClkd("fire");
 
 /*
-* function that randomize an array
+ *******************************************
+ * FUNCTIONS
+ ******************************************
+ */
+
+/*
+ * Convert an object to an array
+ * @param o : object
+ * @param nA : empty array ( new Array )
+ * @returns Nothing
+ */
+function o2a(o, nA) {
+
+    /* https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/getOwnPropertyNames */
+    Object.getOwnPropertyNames(o).forEach(function (val, idx, array) {
+
+        console.log(idx + " ->" + val + " -> " + o[val]);
+        nA[idx] = o[val];
+
+    });
+}
+
+/*
+ * function that randomize an array
  */
 /*http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array*/
 function shuffle(array) {
@@ -118,8 +131,8 @@ function addEl(e) {
 }
 
 /*
-* Handle the logic needed when an element  is clicked (e = name of the element, the id of the div )
-*********************************************************************************************************
+ * Handle the logic needed when an element  is clicked (e = name of the element, the id of the div )
+ *********************************************************************************************************
  */
 function elClkd(e) {
 
