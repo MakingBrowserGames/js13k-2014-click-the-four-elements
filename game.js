@@ -2,7 +2,7 @@
  * Created by robomatix on 06/09/14.
  */
 
-var a = ["e", "w", "a", "f"];
+var a = ["earth", "wind", "air", "fire"];
 shuffle(a);
 
 i = 0;
@@ -12,6 +12,7 @@ for (tot = a.length; i < tot; i++)
 
 /*http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array*/
 function shuffle(array) {
+
     var currentIndex = array.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
@@ -28,13 +29,22 @@ function shuffle(array) {
     }
 
     return array;
+
 }
 
 function addEl(e) {
     /* http://stackoverflow.com/questions/14004117/javascript-create-div-and-append-div-dynamically */
+
+    // Create a div
     var iDiv = document.createElement('div');
     iDiv.id = e;
     iDiv.className = 'el';
-    document.getElementsByTagName('body')[0].appendChild(iDiv);
-    iDiv.innerHTML = e;
+
+    // Create a paragraph so we can verticaly center it
+    var iP = document.createElement('p');
+    iP.innerHTML = e;
+
+    // Appending the previous elements
+    document.getElementsByTagName('body')[0].appendChild(iDiv).appendChild(iP);
+
 }
