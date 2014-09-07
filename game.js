@@ -341,7 +341,6 @@ function endGame(){
 
 }
 
-/* gameOver and endGame could be the same function */
-
 /* Memo */
+/* gameOver and endGame could be the same function */
 /* http://stackoverflow.com/questions/17157342/pure-js-detect-if-im-clicking-an-element-within-an-element , doesn't always get the id of the div ... */
