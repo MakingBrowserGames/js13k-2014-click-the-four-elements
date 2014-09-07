@@ -65,7 +65,7 @@ function mG() {
 
     var iP = document.createElement('p');
     iP.id = "pitch";
-    iP.innerHTML = "In this game, you have to remember in which order to click or tap the elements... Click or tap anywhere on the screen to start playing... Memorize the order of the elements and then click or tap anywhere on the screen and then click or tap the elements in the order you remember it... Eighteen seconds is the maximum duration of this game...";
+    iP.innerHTML = "In this game, hand made by robomatix rebirth, you have to remember in which order to click or tap the elements... Click or tap anywhere on the screen to start playing... Memorize the order of the elements and then click or tap anywhere on the screen and then click or tap the elements in the order you remember it... Eighteen seconds is the maximum duration of this game...";
 
     // Appending the previous elements
     document.getElementsByTagName('body')[0].appendChild(iH1);
