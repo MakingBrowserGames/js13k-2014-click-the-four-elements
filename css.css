@@ -28,6 +28,13 @@ p {
 .el {
     float: left;
     position: relative;
+    /* disabling the selection on this */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
 }
 
 .el.w100 {
