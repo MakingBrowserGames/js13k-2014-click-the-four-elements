@@ -25,15 +25,15 @@ mG();
  */
 
 
-    document.getElementsByTagName('html')[0].onclick = function () {
+document.getElementsByTagName('html')[0].onclick = function () {
 
-        if ( state === "menu" ) {
+    if (state === "menu") {
         gameS1();
-    } else if( state === "gameS1" ){
-            gameS2();
-        }else if( state === "waitReplay" ){
-            gameS1();
-        }
+    } else if (state === "gameS1") {
+        gameS2();
+    } else if (state === "waitReplay") {
+        gameS1();
+    }
 }
 
 /*
@@ -131,7 +131,7 @@ function shuffle(array) {
  * @param w : class for the width of the div generated
  * @returns : nothing
  */
-function addEl(e,w) {
+function addEl(e, w) {
 
     /* http://stackoverflow.com/questions/14004117/javascript-create-div-and-append-div-dynamically */
     // Create a div
@@ -170,7 +170,7 @@ function elClkd(e) {
         }
         cC++;
 
-        if( cC === 4 ){
+        if (cC === 4) {
             score++;
             mG();
         }
@@ -184,14 +184,16 @@ function elClkd(e) {
  ******************************************
  */
 
-function gameS1(){
+function gameS1() {
 
     state = "gameS1";
 
     document.body.innerHTML = "";
 
-    if( score === 0 ){
-        countDown = setTimeout( function(){endGame()}, 33000 );
+    if (score === 0) {
+        countDown = setTimeout(function () {
+            endGame()
+        }, 33000);
     }
 
     /*
@@ -219,11 +221,11 @@ function gameS1(){
      */
     i = 0;
     for (tot = sA1.length; i < tot; i++)
-        addEl(sA1[i],"w100");
+        addEl(sA1[i], "w100");
 
 }
 
-function gameS2(){
+function gameS2() {
 
     state = "gameS2";
 
@@ -255,14 +257,14 @@ function gameS2(){
      */
     i = 0;
     for (tot = sA2.length; i < tot; i++)
-        addEl(sA2[i],"w50");
+        addEl(sA2[i], "w50");
 
-        /*
-         * The logic of the game ! LOL !
-         ***********************************************************************************************************
-         */
+    /*
+     * The logic of the game ! LOL !
+     ***********************************************************************************************************
+     */
 
-        cC = 0; // cC stand for click counter, sort of index of the "clicks", useful to know if the clicked element is the one that should have been clicked. In the array of elements c should be index of the element in the array
+    cC = 0; // cC stand for click counter, sort of index of the "clicks", useful to know if the clicked element is the one that should have been clicked. In the array of elements c should be index of the element in the array
 
     /* To detected witch element is clicked, not the more concise way, but it always work */
     elClkd("earth");
@@ -272,7 +274,7 @@ function gameS2(){
 
 }
 
-function gameOver(){
+function gameOver() {
 
     state = "gameOver";
 
@@ -302,14 +304,17 @@ function gameOver(){
     insertAfter(iP, h1);
     insertAfter(iPr, iP);
 
-    setTimeout( function(){ iPr.innerHTML = "Click or tap the screen to replay"; state = "waitReplay"}, 3000 );
+    setTimeout(function () {
+        iPr.innerHTML = "Click or tap the screen to replay";
+        state = "waitReplay"
+    }, 3000);
 
     // Score reinitialisation
     score = 0;
 
 }
 
-function endGame(){
+function endGame() {
 
     state = "endGame";
 
@@ -334,7 +339,10 @@ function endGame(){
     insertAfter(iP, h1);
     insertAfter(iPr, iP);
 
-    setTimeout( function(){ iPr.innerHTML = "Click or tap the screen to replay"; state = "waitReplay"}, 3000 );
+    setTimeout(function () {
+        iPr.innerHTML = "Click or tap the screen to replay";
+        state = "waitReplay"
+    }, 3000);
 
     // Score reinitialisation
     score = 0;
