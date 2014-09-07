@@ -21,10 +21,13 @@ mG();
 
 
     document.getElementsByTagName('html')[0].onclick = function () {
+
         if ( state === "menu" ) {
         gameS1();
     } else if( state === "gameS1" ){
             gameS2();
+        }else if( state === "waitReplay" ){
+            gameS1();
         }
 }
 
@@ -62,7 +65,7 @@ function mG() {
 
     var iP = document.createElement('p');
     iP.id = "pitch";
-    iP.innerHTML = "In this game, you have to remember in which order to click or tap the elements... Click or tap anywhere on the screen to start playing... Memorize the order of the elements and then click or tap anywhere on the screen and then click or tap the elements in the order you remember it... Thirteen seconds is the maximum duration of this game...";
+    iP.innerHTML = "In this game, you have to remember in which order to click or tap the elements... Click or tap anywhere on the screen to start playing... Memorize the order of the elements and then click or tap anywhere on the screen and then click or tap the elements in the order you remember it... Eighteen seconds is the maximum duration of this game...";
 
     // Appending the previous elements
     document.getElementsByTagName('body')[0].appendChild(iH1);
@@ -92,7 +95,7 @@ function o2a(o, nA) {
     /* https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Object/getOwnPropertyNames */
     Object.getOwnPropertyNames(o).forEach(function (val, idx, array) {
 
-        console.log(idx + " ->" + val + " -> " + o[val]);
+        //console.log(idx + " ->" + val + " -> " + o[val]);
         nA[idx] = o[val];
 
     });
@@ -151,16 +154,18 @@ function addEl(e,w) {
 function elClkd(e) {
 
     document.getElementById(e).onclick = function () {
-        console.log(sA1);
-        console.log('sa1 : ' + sA1[cC]);
-        console.log(e + " " + cC + " score : " + score);
+        //console.log(sA1);
+        //console.log('sa1 : ' + sA1[cC]);
+        //console.log(e + " " + cC + " score : " + score);
 
         if (e === sA1[cC]) {// Comparing the element clicked and the one that should have been clicked
-            console.log('Ok');
+            //console.log('Ok');
+            var audio = new Audio('click.wav');
+            audio.play();
         } else {
-            console.log('Ko');
+            //console.log('Ko');
+            gameOver();
         }
-
         cC++;
 
         if( cC === 4 ){
@@ -176,6 +181,10 @@ function gameS1(){
     state = "gameS1";
 
     document.body.innerHTML = "";
+
+    if(score === 0 ){
+        countDown = setTimeout( function(){endGame()}, 18000 );
+    }
 
     /*
      * Generating the array that will be used for the order in which the elements should be clicked
@@ -193,7 +202,7 @@ function gameS1(){
     sA1 = new Array();
     o2a(dB, sA1);
 
-    console.log(sA1);
+    //console.log(sA1);
 
 
     /*
@@ -230,7 +239,7 @@ function gameS2(){
     sA2 = new Array();
     o2a(dG, sA2);
 
-    console.log(sA2);
+    //console.log(sA2);
 
     /*
      * Generating the div in the document displayed in the browser
@@ -252,6 +261,67 @@ function gameS2(){
     elClkd("water");
     elClkd("air");
     elClkd("fire");
+
+}
+
+function gameOver(){
+
+    state = "gameOver";
+
+    clearTimeout(countDown);
+
+    document.body.innerHTML = "";
+
+    var audio = new Audio('gameover.wav');
+    audio.play();
+
+    // Create a div
+    var iH1 = document.createElement('h1');
+    iH1.id = "h1";
+    iH1.innerHTML = "GAME OVER !!!";
+
+    var iP = document.createElement('p');
+    iP.id = "score";
+    iP.innerHTML = "Your score : " + score;
+
+    // Appending the previous elements
+    document.getElementsByTagName('body')[0].appendChild(iH1);
+    var h1 = document.getElementById("h1");
+    insertAfter(iP, h1);
+
+    var iPr = document.createElement('p');
+    iPr.id = "replay";
+    iPr.innerHTML = "Click or tap the screen to replay";
+
+    setTimeout( function(){insertAfter(iPr, iP); state = "waitReplay"}, 3000 );
+
+}
+
+function endGame(){
+
+    state = "endGame";
+
+    document.body.innerHTML = "";
+
+    // Create a div
+    var iH1 = document.createElement('h1');
+    iH1.id = "h1";
+    iH1.innerHTML = "Welldone !!! The eighteen seconds are over !!!";
+
+    var iP = document.createElement('p');
+    iP.id = "score";
+    iP.innerHTML = "Your score : " + score;
+
+    var iPr = document.createElement('p');
+    iPr.id = "replay";
+    iPr.innerHTML = "Click or tap the screen to replay";
+
+    // Appending the previous elements
+    document.getElementsByTagName('body')[0].appendChild(iH1);
+    var h1 = document.getElementById("h1");
+    insertAfter(iP, h1);
+
+    setTimeout( function(){insertAfter(iPr, iP); state = "waitReplay"}, 3000 );
 
 }
 

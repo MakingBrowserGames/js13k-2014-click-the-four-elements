@@ -13,10 +13,18 @@ html {
 }
 
 h1,
-p#pitch {
+p#pitch,
+p#score,
+p#replay {
     max-width: 480px;
     margin: 14px auto 0 auto;
     text-align: justify;
+}
+
+p#score,
+p#replay {
+    font-size: 3em;
+    text-align: center;
 }
 
 h1 {
