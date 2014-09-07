@@ -4,7 +4,7 @@
 
 
 /*
- * Initiation
+ * Some variable initiation
  ***********************************
  */
 var a = ["earth", "water", "air", "fire"]; // The initial array of elements
@@ -19,6 +19,11 @@ score = 0;
  */
 mG();
 
+/*
+ * States logic
+ **************************************
+ */
+
 
     document.getElementsByTagName('html')[0].onclick = function () {
 
@@ -30,14 +35,6 @@ mG();
             gameS1();
         }
 }
-
-/*
- * Game state
- *****************
- */
-
-
-
 
 /*
  *******************************************
@@ -65,7 +62,7 @@ function mG() {
 
     var iP = document.createElement('p');
     iP.id = "pitch";
-    iP.innerHTML = "In this game, hand made by robomatix rebirth, you have to remember in which order to click or tap the elements... Click or tap anywhere on the screen to start playing... Memorize the order of the elements and then click or tap anywhere on the screen and then click or tap the elements in the order you remember it... Eighteen seconds is the maximum duration of this game...";
+    iP.innerHTML = "In this game, hand made by robomatix rebirth, you have to remember in which order to click or tap the elements... Click or tap anywhere on the screen to start playing... Memorize the order of the elements and then click or tap anywhere on the screen and then click or tap the elements in the order you remember it... Thirty three seconds is the maximum duration of this game...";
 
     // Appending the previous elements
     document.getElementsByTagName('body')[0].appendChild(iH1);
@@ -103,6 +100,8 @@ function o2a(o, nA) {
 
 /*
  * function that randomize an array
+ * @param array : array
+ * @returns : array
  */
 /*http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array*/
 function shuffle(array) {
@@ -128,7 +127,9 @@ function shuffle(array) {
 
 /*
  * Handle the creation of the div that represents the elements (e = name of the element )
- *******************************************************************************************
+ * @param e : name of the element
+ * @param w : class for the width of the div generated
+ * @returns : nothing
  */
 function addEl(e,w) {
 
@@ -149,7 +150,8 @@ function addEl(e,w) {
 
 /*
  * Handle the logic needed when an element  is clicked (e = name of the element, the id of the div )
- *********************************************************************************************************
+ * @param e : name of the element
+ * @returns : nothing
  */
 function elClkd(e) {
 
@@ -176,14 +178,20 @@ function elClkd(e) {
 
 }
 
+/*
+ *******************************************
+ * STATES
+ ******************************************
+ */
+
 function gameS1(){
 
     state = "gameS1";
 
     document.body.innerHTML = "";
 
-    if(score === 0 ){
-        countDown = setTimeout( function(){endGame()}, 18000 );
+    if( score === 0 ){
+        countDown = setTimeout( function(){endGame()}, 33000 );
     }
 
     /*
@@ -210,8 +218,8 @@ function gameS1(){
      ***************************************************************
      */
     i = 0;
-    for (tot = a.length; i < tot; i++)
-        addEl(a[i],"w100");
+    for (tot = sA1.length; i < tot; i++)
+        addEl(sA1[i],"w100");
 
 }
 
@@ -246,8 +254,8 @@ function gameS2(){
      ***************************************************************
      */
     i = 0;
-    for (tot = a.length; i < tot; i++)
-        addEl(a[i],"w50");
+    for (tot = sA2.length; i < tot; i++)
+        addEl(sA2[i],"w50");
 
         /*
          * The logic of the game ! LOL !
@@ -284,16 +292,20 @@ function gameOver(){
     iP.id = "score";
     iP.innerHTML = "Your score : " + score;
 
-    // Appending the previous elements
+    var iPr = document.createElement('p');
+    iPr.id = "replay";
+    iPr.innerHTML = "Please wait few seconds before clicking or taping to replay";
+
+    // Adding the previous elements
     document.getElementsByTagName('body')[0].appendChild(iH1);
     var h1 = document.getElementById("h1");
     insertAfter(iP, h1);
+    insertAfter(iPr, iP);
 
-    var iPr = document.createElement('p');
-    iPr.id = "replay";
-    iPr.innerHTML = "Click or tap the screen to replay";
+    setTimeout( function(){ iPr.innerHTML = "Click or tap the screen to replay"; state = "waitReplay"}, 3000 );
 
-    setTimeout( function(){insertAfter(iPr, iP); state = "waitReplay"}, 3000 );
+    // Score reinitialisation
+    score = 0;
 
 }
 
@@ -306,7 +318,7 @@ function endGame(){
     // Create a div
     var iH1 = document.createElement('h1');
     iH1.id = "h1";
-    iH1.innerHTML = "Welldone !!! The eighteen seconds are over !!!";
+    iH1.innerHTML = "The thirty three seconds are over !!!";
 
     var iP = document.createElement('p');
     iP.id = "score";
@@ -314,16 +326,22 @@ function endGame(){
 
     var iPr = document.createElement('p');
     iPr.id = "replay";
-    iPr.innerHTML = "Click or tap the screen to replay";
+    iPr.innerHTML = "Please wait few seconds before clicking or taping to replay";
 
-    // Appending the previous elements
+    // Adding the previous elements
     document.getElementsByTagName('body')[0].appendChild(iH1);
     var h1 = document.getElementById("h1");
     insertAfter(iP, h1);
+    insertAfter(iPr, iP);
 
-    setTimeout( function(){insertAfter(iPr, iP); state = "waitReplay"}, 3000 );
+    setTimeout( function(){ iPr.innerHTML = "Click or tap the screen to replay"; state = "waitReplay"}, 3000 );
+
+    // Score reinitialisation
+    score = 0;
 
 }
+
+/* gameOver and endGame could be the same function */
 
 /* Memo */
 /* http://stackoverflow.com/questions/17157342/pure-js-detect-if-im-clicking-an-element-within-an-element , doesn't always get the id of the div ... */

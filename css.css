@@ -12,22 +12,15 @@ html {
     color: white;
 }
 
-h1,
-p#pitch,
-p#score,
-p#replay {
-    max-width: 480px;
-    margin: 14px auto 0 auto;
-    text-align: justify;
-}
-
-p#score,
-p#replay {
-    font-size: 3em;
-    text-align: center;
-}
-
 h1 {
+    text-align: center;
+    font-size: 3.5em;
+    width: 100%;
+}
+p {
+    font-size: 3em;
+    width: 100%;
+    margin-top: 14px;
     text-align: center;
 }
 
